@@ -38,7 +38,7 @@ app.post("/", async (req, res) => {
 app.post("/ipn", async (req, res) => {
   const { verify } = require("coinpayments-ipn");
 
-  if (!req.get(`HMAC`) || !req.body || !req.body.ipn_mode || req.body.ipn_mode !== `hmac` || MERCHANT_ID !== req.body.merchant) {
+  if (!req.get(`hmac`) || !req.body || !req.body.ipn_mode || req.body.ipn_mode !== `hmac` || MERCHANT_ID !== req.body.merchant) {
     return res.send("error");
   }
   const hmac = req.get(`hmac`);
